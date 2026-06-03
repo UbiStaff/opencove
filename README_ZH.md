@@ -2,15 +2,57 @@
 
 # OpenCove 🌌
 
-> **Hermes Edition** — 在官方 OpenCove 基础上集成了 [Hermes](https://github.com/DeadWaveWave/hermes-agent) Agent Provider，支持 Hermes CLI 作为原生 agent 引擎。  
-> 上游 PR: [feat: add Hermes agent provider integration](https://github.com/DeadWaveWave/opencove/pull/277)
-
 **把 Claude Code、Codex、Hermes、Gemini CLI、终端、任务和笔记放进同一张空间画布。**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange.svg)]()
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey)]()
 [![English](https://img.shields.io/badge/Language-English-blue) ](./README.md)
+[![Hermes](https://img.shields.io/badge/Hermes-Integrated-teal.svg)](https://github.com/DeadWaveWave/hermes-agent)
+
+---
+
+> ⚡ **Hermes Edition** — 基于 [OpenCove 官方版本](https://github.com/DeadWaveWave/opencove) 的修改版，新增 [Hermes](https://github.com/DeadWaveWave/hermes-agent) Agent Provider 集成。
+
+</div>
+
+## 📋 本修改版说明
+
+本仓库是 [OpenCove](https://github.com/DeadWaveWave/opencove) 的一个 fork，由 **[@UbiStaff](https://github.com/UbiStaff)** 维护。在原项目基础上做了以下修改：
+
+### 新增功能
+
+- **Hermes Agent Provider**：将 [Hermes CLI](https://github.com/DeadWaveWave/hermes-agent) 集成为 opencove 的原生 agent 引擎，与 Claude Code、Codex、OpenCode、Gemini CLI 并列使用
+- 支持 `hermes chat`（交互模式）、`hermes chat -q <prompt>`（带提示）和 `hermes chat --resume <id>`（恢复会话）
+- 支持从 `~/.hermes/sessions/sessions.json` 自动发现和恢复 Hermes 会话
+- 支持 Hermes 用于任务标题生成和工作树命名建议
+
+### 修改范围
+
+| 层次 | 说明 |
+|------|------|
+| 类型定义 | 扩展 `AgentProviderId`、`AgentModelCatalogSource`、`AgentSessionSummarySource` 等 |
+| Provider 注册 | 添加到 `AGENT_PROVIDERS`、`TASK_TITLE_PROVIDERS`、`WORKTREE_NAME_SUGGESTION_PROVIDERS` |
+| 命令构建 | 新增 Hermes 的 launch/task-title/worktree-name 命令工厂 |
+| 会话管理 | 通过 sessions.json 索引定位 Hermes 会话 |
+| IPC 校验 | 所有 provider 校验路径（launch、catalog、resume）均已覆盖 |
+| 前端 UI | Hermes 图标（层叠菱形 SVG）、青色主题色、中英文标签 |
+| 测试 | 更新单元测试以包含 Hermes provider |
+
+### 如何安装本修改版
+
+```bash
+git clone https://github.com/UbiStaff/opencove.git
+cd opencove
+pnpm install
+pnpm dev
+```
+
+### 上游 PR
+
+修改已向上游提交 Pull Request：[#277 feat: add Hermes agent provider integration](https://github.com/DeadWaveWave/opencove/pull/277)
+
+---
 
 让多个 Agent 并行工作时的上下文、执行过程和思考痕迹始终可见。
 
@@ -136,7 +178,7 @@ opencove worker start --hostname 0.0.0.0 --web-ui-password 'change-me'
 #### 构建步骤
 
 ```bash
-# 1. 克隆仓库
+# 1. 克隆官方仓库（或本修改版：https://github.com/UbiStaff/opencove.git）
 git clone https://github.com/DeadWaveWave/opencove.git
 cd opencove
 
@@ -191,7 +233,7 @@ OpenCove 是一项长期演进的开源企划，我们需要你的加入，共�
 
 <div align="center">
 
-<p>基于现代 Web 标准构建，探索下一代人机协同体验。<br>由 OpenCove 团队倾注 ❤️ 设计开发。</p>
+<p>基于现代 Web 标准构建，探索下一代人机协同体验。<br>由 <a href="https://github.com/DeadWaveWave">OpenCove 团队</a> ❤️ 设计开发。<br>Hermes 集成由 <a href="https://github.com/UbiStaff">@UbiStaff</a> 贡献。</p>
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
