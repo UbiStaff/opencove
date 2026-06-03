@@ -59,8 +59,8 @@
 ### 安装
 
 ```bash
-git clone https://github.com/UbiStaff/opencove.git
-cd opencove
+git clone https://github.com/UbiStaff/opencove-hermes.git
+cd opencove-hermes
 pnpm install
 pnpm dev
 ```

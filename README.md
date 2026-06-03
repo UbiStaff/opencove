@@ -59,8 +59,8 @@ Changes submitted to upstream: **[#277 feat: add Hermes agent provider integrati
 ### Install This Fork
 
 ```bash
-git clone https://github.com/UbiStaff/opencove.git
-cd opencove
+git clone https://github.com/UbiStaff/opencove-hermes.git
+cd opencove-hermes
 pnpm install
 pnpm dev
 ```
