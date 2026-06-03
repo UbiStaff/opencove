@@ -202,7 +202,9 @@ export function registerRemoteAgentIpcHandlers(options: {
                   ? 'opencode'
                   : provider === 'gemini'
                     ? 'gemini'
-                    : 'codex',
+                    : provider === 'hermes'
+                      ? 'hermes'
+                      : 'codex',
             status: 'available',
             executablePath: null,
             source: null,
@@ -256,7 +258,9 @@ export function registerRemoteAgentIpcHandlers(options: {
             ? 'opencode-cli'
             : provider === 'gemini'
               ? 'gemini-cli'
-              : 'codex-cli'
+              : provider === 'hermes'
+                ? 'hermes-static'
+                : 'codex-cli'
 
       return {
         provider,

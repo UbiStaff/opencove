@@ -112,7 +112,11 @@ export function createBrowserAgentApi(): AgentApi {
             ? 'codex-cli'
             : payload.provider === 'opencode'
               ? 'opencode-cli'
-              : 'gemini-cli',
+              : payload.provider === 'gemini'
+                ? 'gemini-cli'
+                : payload.provider === 'hermes'
+                  ? 'hermes-static'
+                  : 'hermes-cli',
       fetchedAt: new Date().toISOString(),
       models: [],
       error: null,
@@ -131,7 +135,9 @@ export function createBrowserAgentApi(): AgentApi {
                   ? 'opencode'
                   : provider === 'gemini'
                     ? 'gemini'
-                    : 'codex',
+                    : provider === 'hermes'
+                      ? 'hermes'
+                      : 'codex',
             status: 'available',
             executablePath: null,
             source: null,

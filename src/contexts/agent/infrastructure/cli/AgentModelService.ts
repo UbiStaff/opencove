@@ -58,6 +58,15 @@ const CLAUDE_CODE_STATIC_MODELS: AgentModelOption[] = [
   },
 ]
 
+const HERMES_STATIC_MODELS: AgentModelOption[] = [
+  {
+    id: 'hermes-default',
+    displayName: 'Hermes Agent (Default)',
+    description: 'Default Hermes Agent model',
+    isDefault: true,
+  },
+]
+
 function toErrorMessage(error: unknown): string {
   if (error instanceof Error && error.message) {
     return error.message
@@ -203,6 +212,10 @@ function listClaudeCodeStaticModels(): AgentModelOption[] {
   return CLAUDE_CODE_STATIC_MODELS.map(model => ({ ...model }))
 }
 
+function listHermesStaticModels(): AgentModelOption[] {
+  return HERMES_STATIC_MODELS.map(model => ({ ...model }))
+}
+
 export function disposeAgentModelService(): void {
   codexModelsRequestInFlight = null
   cachedCodexModels = null
@@ -322,6 +335,18 @@ export async function listAgentModels(options: {
     }
 
     return cloneListAgentModelsResult(await geminiModelsRequestInFlight)
+  }
+
+  if (provider === 'hermes') {
+    const fetchedAt = new Date().toISOString()
+
+    return {
+      provider,
+      source: 'hermes-static',
+      fetchedAt,
+      models: listHermesStaticModels(),
+      error: null,
+    }
   }
 
   const fetchedAt = new Date().toISOString()

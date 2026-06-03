@@ -36,6 +36,10 @@ export function resolveAgentCliCommand(provider: AgentProviderId): string {
     return 'gemini'
   }
 
+  if (provider === 'hermes') {
+    return 'hermes'
+  }
+
   return 'codex'
 }
 
@@ -196,6 +200,47 @@ export function buildAgentLaunchCommand(input: BuildAgentLaunchCommandInput): Ag
 
     return {
       command: 'gemini',
+      args,
+      launchMode: 'new',
+      effectiveModel,
+      resumeSessionId: null,
+    }
+  }
+
+  if (input.provider === 'hermes') {
+    const args: string[] = []
+
+    if (agentFullAccess) {
+      args.push('--yolo')
+    }
+
+    if (effectiveModel) {
+      args.push('-m', effectiveModel)
+    }
+
+    if (input.mode === 'resume') {
+      if (resumeSessionId) {
+        args.push('--resume', resumeSessionId)
+      } else {
+        args.push('--continue')
+      }
+
+      return {
+        command: 'hermes',
+        args,
+        launchMode: 'resume',
+        effectiveModel,
+        resumeSessionId,
+      }
+    }
+
+    const prompt = normalizePrompt(input.prompt)
+    if (prompt.length > 0) {
+      args.push('-z', prompt)
+    }
+
+    return {
+      command: 'hermes',
       args,
       launchMode: 'new',
       effectiveModel,

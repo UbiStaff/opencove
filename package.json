@@ -1,8 +1,8 @@
 {
   "name": "opencove",
   "version": "0.2.0",
-  "productName": "OpenCove",
-  "description": "An infinite canvas for Claude Code, Codex, terminals, tasks, and notes.",
+  "productName": "OpenCove Hermes",
+  "description": "An infinite canvas for Claude Code, Codex, Hermes, terminals, tasks, and notes.",
   "main": "./out/main/index.js",
   "author": {
     "name": "deadwavewave",
@@ -28,9 +28,9 @@
     "developer-tools"
   ],
   "build": {
-    "appId": "dev.deadwave.opencove",
-    "productName": "OpenCove",
-    "executableName": "OpenCove",
+    "appId": "dev.deadwave.opencove-hermes",
+    "productName": "OpenCove Hermes",
+    "executableName": "OpenCove Hermes",
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
     "generateUpdatesFilesForAllChannels": true,
     "extraResources": [

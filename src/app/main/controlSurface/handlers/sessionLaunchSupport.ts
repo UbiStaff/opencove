@@ -99,7 +99,8 @@ export function resolveProviderFromSettings(
     requestedProvider === 'claude-code' ||
     requestedProvider === 'codex' ||
     requestedProvider === 'opencode' ||
-    requestedProvider === 'gemini'
+    requestedProvider === 'gemini' ||
+    requestedProvider === 'hermes'
   ) {
     return requestedProvider
   }

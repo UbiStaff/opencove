@@ -317,6 +317,10 @@ async function tryFindResumeSessionId(
     return await findOpenCodeResumeSessionId(cwd, startedAtMs)
   }
 
+  if (provider === 'hermes') {
+    return null
+  }
+
   return await findGeminiResumeSessionId(cwd, startedAtMs)
 }
 

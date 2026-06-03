@@ -371,7 +371,8 @@ function ensurePersistedNode(node: unknown): PersistedTerminalNode | null {
       record.terminalProviderHint === 'claude-code' ||
       record.terminalProviderHint === 'codex' ||
       record.terminalProviderHint === 'opencode' ||
-      record.terminalProviderHint === 'gemini'
+      record.terminalProviderHint === 'gemini' ||
+      record.terminalProviderHint === 'hermes'
         ? record.terminalProviderHint
         : null,
     labelColorOverride: normalizeNodeLabelColorOverride(record.labelColorOverride),

@@ -57,6 +57,9 @@ function classifyExternalAgent(
   if (nameStem === 'gemini' || hasExecutableToken(commandLine, 'gemini')) {
     return 'external-agent-gemini'
   }
+  if (nameStem === 'hermes' || hasExecutableToken(commandLine, 'hermes')) {
+    return 'external-agent-hermes'
+  }
   return null
 }
 

@@ -2,7 +2,7 @@ import { app } from 'electron'
 import { resolve } from 'path'
 import { shouldEnableWaylandIme } from './waylandIme'
 
-const APP_USER_DATA_DIRECTORY_NAME = 'opencove'
+const APP_USER_DATA_DIRECTORY_NAME = 'OpenCove Hermes'
 
 export type E2EWindowMode = 'normal' | 'inactive' | 'hidden' | 'offscreen'
 

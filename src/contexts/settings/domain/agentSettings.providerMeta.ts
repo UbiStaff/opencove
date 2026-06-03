@@ -5,6 +5,7 @@ export const AGENT_PROVIDER_LABEL: Record<AgentProvider, string> = {
   codex: 'Codex',
   opencode: 'OpenCode',
   gemini: 'Gemini CLI',
+  hermes: 'Hermes Agent',
 }
 
 export interface AgentProviderCapabilities {
@@ -37,6 +38,12 @@ export const AGENT_PROVIDER_CAPABILITIES: Record<AgentProvider, AgentProviderCap
     taskTitle: false,
     worktreeNameSuggestion: false,
     runtimeObservation: 'none',
+    experimental: false,
+  },
+  hermes: {
+    taskTitle: true,
+    worktreeNameSuggestion: true,
+    runtimeObservation: 'jsonl',
     experimental: false,
   },
 }
