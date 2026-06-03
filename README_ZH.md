@@ -2,7 +2,10 @@
 
 # OpenCove 🌌
 
-**把 Claude Code、Codex、终端、任务和笔记放进同一张空间画布。**
+> **Hermes Edition** — 在官方 OpenCove 基础上集成了 [Hermes](https://github.com/DeadWaveWave/hermes-agent) Agent Provider，支持 Hermes CLI 作为原生 agent 引擎。  
+> 上游 PR: [feat: add Hermes agent provider integration](https://github.com/DeadWaveWave/opencove/pull/277)
+
+**把 Claude Code、Codex、Hermes、Gemini CLI、终端、任务和笔记放进同一张空间画布。**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange.svg)]()
