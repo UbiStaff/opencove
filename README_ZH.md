@@ -1,6 +1,14 @@
 <div align="center">
 
-# OpenCove 🌌
+> [!WARNING]  
+> ## 这不是 OpenCove 官方仓库  
+> **本仓库是 [OpenCove 官方版本](https://github.com/DeadWaveWave/opencove) 的第三方修改版（Fork），并非原版。**  
+> **原作者：[DeadWaveWave（石浩洁）](https://github.com/DeadWaveWave) • 原仓库：[github.com/DeadWaveWave/opencove](https://github.com/DeadWaveWave/opencove)**  
+> 如需下载官方版本或向原项目提交 issue，请访问原仓库。本修改版与原项目无关，所有问题请联系本仓库维护者。
+
+---
+
+# OpenCove 🌌 + Hermes
 
 **把 Claude Code、Codex、Hermes、Gemini CLI、终端、任务和笔记放进同一张空间画布。**
 
@@ -9,37 +17,46 @@
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey)]()
 [![English](https://img.shields.io/badge/Language-English-blue) ](./README.md)
 [![Hermes](https://img.shields.io/badge/Hermes-Integrated-teal.svg)](https://github.com/DeadWaveWave/hermes-agent)
-
----
-
-> ⚡ **Hermes Edition** — 基于 [OpenCove 官方版本](https://github.com/DeadWaveWave/opencove) 的修改版，新增 [Hermes](https://github.com/DeadWaveWave/hermes-agent) Agent Provider 集成。
+[![Modified](https://img.shields.io/badge/Fork-Modified-red.svg)](https://github.com/DeadWaveWave/opencove)
 
 </div>
 
-## 📋 本修改版说明
+---
 
-本仓库是 [OpenCove](https://github.com/DeadWaveWave/opencove) 的一个 fork，由 **[@UbiStaff](https://github.com/UbiStaff)** 维护。在原项目基础上做了以下修改：
+## ⚡ 本修改版说明
 
-### 新增功能
+本仓库由 **[@UbiStaff](https://github.com/UbiStaff)** 维护，在 [OpenCove 官方版本](https://github.com/DeadWaveWave/opencove)（作者 [DeadWaveWave](https://github.com/DeadWaveWave)）基础上新增了 [Hermes Agent](https://github.com/DeadWaveWave/hermes-agent) Provider 集成。
 
-- **Hermes Agent Provider**：将 [Hermes CLI](https://github.com/DeadWaveWave/hermes-agent) 集成为 opencove 的原生 agent 引擎，与 Claude Code、Codex、OpenCode、Gemini CLI 并列使用
-- 支持 `hermes chat`（交互模式）、`hermes chat -q <prompt>`（带提示）和 `hermes chat --resume <id>`（恢复会话）
-- 支持从 `~/.hermes/sessions/sessions.json` 自动发现和恢复 Hermes 会话
-- 支持 Hermes 用于任务标题生成和工作树命名建议
+### 修改内容
 
-### 修改范围
+**新增 Hermes CLI 作为第 5 个原生 Agent 引擎**，与 Claude Code、Codex、OpenCode、Gemini CLI 一起在 opencove 画布中使用。
 
-| 层次 | 说明 |
-|------|------|
-| 类型定义 | 扩展 `AgentProviderId`、`AgentModelCatalogSource`、`AgentSessionSummarySource` 等 |
-| Provider 注册 | 添加到 `AGENT_PROVIDERS`、`TASK_TITLE_PROVIDERS`、`WORKTREE_NAME_SUGGESTION_PROVIDERS` |
-| 命令构建 | 新增 Hermes 的 launch/task-title/worktree-name 命令工厂 |
-| 会话管理 | 通过 sessions.json 索引定位 Hermes 会话 |
-| IPC 校验 | 所有 provider 校验路径（launch、catalog、resume）均已覆盖 |
-| 前端 UI | Hermes 图标（层叠菱形 SVG）、青色主题色、中英文标签 |
-| 测试 | 更新单元测试以包含 Hermes provider |
+| 修改层次 | 具体内容 |
+|----------|----------|
+| 设置面板 | 新增 Hermes provider 选项，可配置可执行文件路径 |
+| Agent 节点 | 画布上可创建 Hermes agent 节点，启动交互式终端 |
+| 命令模式 | `hermes chat`（交互）/ `hermes chat -q <prompt>`（带提示）/ `--resume`（恢复会话） |
+| 会话管理 | 从 `~/.hermes/sessions/sessions.json` 自动发现和恢复会话 |
+| 类型系统 | 扩展 `AgentProviderId`、`AgentModelCatalogSource` 等全部类型联合 |
+| IPC 校验 | 覆盖 normalizeProvider、normalizeAgentProviderId、managedAgentProvider 所有校验路径 |
+| 前端 UI | 层叠菱形 SVG 图标 + 青色主题色 + 中英文标签 |
+| 测试 | 更新 3 个单元测试文件以包含 Hermes provider |
 
-### 如何安装本修改版
+### 截图
+
+#### 设置面板 — 启用 Hermes Provider
+
+![Hermes 设置面板](https://raw.githubusercontent.com/UbiStaff/opencove/main/assets/screenshots/hermes-settings.png)
+
+#### 画布运行 — Hermes Agent 交互终端
+
+![Hermes 运行截图](https://raw.githubusercontent.com/UbiStaff/opencove/main/assets/screenshots/hermes-canvas.png)
+
+### 上游 PR
+
+修改已向原项目提交 Pull Request：**[#277 feat: add Hermes agent provider integration](https://github.com/DeadWaveWave/opencove/pull/277)**
+
+### 安装
 
 ```bash
 git clone https://github.com/UbiStaff/opencove.git
@@ -47,6 +64,11 @@ cd opencove
 pnpm install
 pnpm dev
 ```
+
+> [!NOTE]
+> 需要预先安装 [Hermes CLI](https://github.com/DeadWaveWave/hermes-agent) 并在 opencove 设置面板中启用 Hermes provider。
+
+---
 
 ### 上游 PR
 
